@@ -39,10 +39,19 @@ local plugins =
   },
   {
     "neovim/nvim-lspconfig",
-    config =function()
-    require "plugins.configs.lspconfig"
-    require "custom.configs.lspconfig"
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "custom.configs.lspconfig"
     end,
+  },
+  {
+    "github/copilot.vim",
+    cmd = "Copilot",
+    event = "BufEnter"
+  },
+  {
+    'ThePrimeagen/vim-be-good',
+    cmd = "VimBeGood"
   }
 }
 return plugins

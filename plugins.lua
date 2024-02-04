@@ -45,13 +45,50 @@ local plugins =
     end,
   },
   {
-    "github/copilot.vim",
-    cmd = "Copilot",
-    event = "BufEnter"
-  },
-  {
     'ThePrimeagen/vim-be-good',
     cmd = "VimBeGood"
+  },
+  {
+    'kdheepak/lazygit.nvim',
+    cmd = "LazyGit"
+
+  },
+  {
+    'neoclide/coc.nvim',
+    branch = 'release',
+    cmd = "CocInstall",
+    keys = {
+      { "<leader>fe", "<cmd>CocCommand tsserver.executeAutofix<cr>", desc = "auto fix code using coc" },
+    }
+
+  },
+  {
+    "HiPhish/nvim-ts-rainbow2",
+    event = "InsertEnter",
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        rainbow = {
+          enable = true,
+          -- list of languages you want to disable the plugin for
+          disable = {},
+          -- Which query to use for finding delimiters
+          query = 'rainbow-parens',
+          -- Highlight the entire buffer all at once
+          strategy = require('ts-rainbow').strategy.global,
+        }
+      }
+    end
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = function(_, opts)
+      -- Other blankline configuration here
+      return require("indent-rainbowline").make_opts(opts)
+    end,
+    dependencies = {
+      "TheGLander/indent-rainbowline.nvim",
+    },
+    event="InsertEnter"
   }
 }
 return plugins
